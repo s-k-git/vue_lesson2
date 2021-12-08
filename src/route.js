@@ -5,7 +5,6 @@ import Page_1 from "./components/Page_1.vue"
 import Page_2 from "./components/Page_2.vue"
 import Page_3 from "./components/Page_3.vue"
 import Page_4 from "./components/Page_4.vue"
-import store from "./store";
 
 Vue.use(VueRouter)
 
@@ -21,9 +20,5 @@ const router = new VueRouter({
     routes: routes,
     mode: "history"
 });
-
-router.afterEach((to) => {
-    store.commit("updateName", { name: to.fullPath });
-  });
 
 export default router

@@ -1,78 +1,54 @@
 <template>
-<div>
-  <div class="page1">
-    <header class="p1head">お客様の情報を入力してください</header>
-    <div class="content">
-      <p>-性別-<p>
-      <label><input type="radio" name="sex" value="man">男</label>
-      <label><input type="radio" name="sex" value="woman">女</label>
-      <p></p>
-      <p>-生年月日-</p>
-      <form>
-      <select>
-        <option v-for="n in 63" :key="n.id">
-          {{n + 1925}}年(昭和{{n}})
-        </option>
-        <option>
-          1989年(昭和64/平成1)
-        </option>
-        <option v-for="n in 29" :key="n.id">
-          {{n + 1989}}年(平成{{n + 1}})
-        </option>
-        <option>
-          2019年(平成32/令和1)
-        </option>
-        <option v-for="n in 5" :key="n.id">
-          {{n + 2019}}年(令和{{n + 1}})
-        </option>
-      </select>年
-      <select>
-        <option v-for="n in 12" :key="n.id">
-          {{n}}
-        </option>
-      </select>月
-      <select>
-        <option v-for="n in 31" :key="n.id">
-          {{n}}
-        </option>
-      </select>日
-      </form>
+  <div>
+    <div class="form">
+      <div class="header">
+        <p id="step">STEP1</p>
+        <p id="inst">お客様の情報を入力してください</p>
+      </div>
+      <div class="body">
+        <p class="genre">-性別-</p>
+        <label>
+          <input type="radio" name="gender" value="男性" @change="updateGender">男性
+          </label>
+        <label><input type="radio" name="gender" value="女性" @change="updateGender">女性
+        </label>
+        <p class="genre">-生年月日-</p>
+        <select name="year" id="id_year" @change="updateYear">
+          <option v-for="(year, key) in 2021" :key="key">
+            {{ year }}
+          </option></select>年
+        <select name="month" id="id_month" @change="updateMonth">
+          <option v-for="(month, key) in 12" :key="key">
+            {{ month }}
+          </option></select>月
+        <select name="day" id="id_day" @change="updateDay">
+          <option v-for="(day, key) in 31" :key="key">
+            {{ day }}
+          </option></select>日
+      </div>
+    </div>
+    <div class="button-group">
+      <router-link to="/page2" class="button">次へ進む ＞</router-link>
     </div>
   </div>
-  <div class="page1btn">
-    <button @click="pageto0b">前へ戻る</button>
-    <button @click="pageto2g">次へ進む</button>
-  </div>
-</div>
 </template>
 
 <script>
-export default {
+
+export default{
   methods: {
-    pageto0b() {
-      this.$router.push({ path: "/" })
+    updateGender(e) {
+      this.$store.commit('updateGender', e.target.value)
     },
-    pageto2g() {
-      this.$router.push({ path: "/page2" })
-    }
+    updateYear(e) {
+      this.$store.commit('updateYear', e.target.value)
+    },
+    updateMonth (e) {
+      this.$store.commit('updateMonth', e.target.value)
+    },
+    updateDay (e) {
+      this.$store.commit('updateDay', e.target.value)
+    },
   }
 }
 </script>
-
-<style>
-.page1 {
-  width: 700px;
-  margin: auto;
-  border:solid #40E0D0;
-}
-
-.page1btn {
-  width: 200px;
-  margin: auto;
-  padding-top: 10px;
-}
-
-.pageto2g {
-  margin-left: 10px;
-}
-</style>

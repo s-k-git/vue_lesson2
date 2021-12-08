@@ -1,22 +1,16 @@
 <template>
   <div>
-    <p>page0</p>
-    <div class="page0btn">
-      <button @click="pageto1g">次へ進む</button>
+    <div class="form">
+      <div class="header">
+        <p id="step">STEP0</p>
+        <p id="inst">生命保険加入フォーム</p>
+      </div>
+      <div class="body">
+        <p class="genre">-生命保険入力フォーム デモ画面-</p>
+      </div>
+      <div class="button-group">
+        <router-link to="/page1" class="button">START ＞</router-link>
+      </div>
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  methods: {
-    pageto1g() {
-      this.$router.push({ path: "/page1" })
-    }
-  }
-}
-</script>
-
-<style>
-
-</style>
